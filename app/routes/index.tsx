@@ -1,5 +1,5 @@
 import { json } from '@remix-run/node';
-import { useLoaderData } from '@remix-run/react';
+import { useLoaderData, useActionData, Form } from '@remix-run/react';
 
 // type definitions
 
@@ -30,12 +30,24 @@ export const loader = async () => {
   });
 };
 
+// action funtion
+export const action = async ({ request }) => {
+  const formData = await request.formData();
+  const name = formData.get('name');
+
+  return json({ name });
+};
+
 export default function Index() {
   // use data from loader
   const { books } = useLoaderData() as LoaderData;
+
+  // get data from action
+  const data = useActionData();
+
   return (
     <div style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.4' }}>
-      <h1>Welcome to Remix</h1>
+      <h1>Welcome to Remix {data ? data.name : 'Stranger'} </h1>
       <ul>
         {books.map(({ title, genre }, i) => {
           return (
@@ -46,6 +58,16 @@ export default function Index() {
           );
         })}
       </ul>
+
+      <Form method="post">
+        <div className="form-control">
+          <label htmlFor="name">
+            Name
+            <input id="name" name="name" type="text" />
+          </label>
+        </div>
+        <button type="submit">Submit </button>
+      </Form>
     </div>
   );
 }
