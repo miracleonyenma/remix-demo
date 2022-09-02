@@ -9,9 +9,16 @@
     "start": "cross-env NODE_ENV=production remix-serve build"
   },
   "dependencies": {
+    "@apollo/client": "^3.6.9",
+    "@graphql-tools/mock": "^8.7.4",
+    "@graphql-tools/schema": "^9.0.2",
     "@remix-run/node": "^1.5.1",
     "@remix-run/react": "^1.5.1",
     "@remix-run/serve": "^1.5.1",
+    "apollo-server-core": "^3.10.2",
+    "apollo-server-express": "^3.10.2",
+    "apollo-server-micro": "^3.10.2",
+    "graphql": "^16.6.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
