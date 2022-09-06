@@ -6,5 +6,8 @@ module.exports = {
   browserBuildDirectory: "public/build",
   publicPath: "/build/",
   serverBuildDirectory: "build",
+  serverDependenciesToBundle: [
+    "node-modules-polyfills:fs"
+  ],
   devServerPort: 8002
 };
